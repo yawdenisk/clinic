@@ -1,14 +1,11 @@
 <?php
+session_start();
 
-session_start(); // Rozpoczęcie sesji
-
-// Zadeklarowanie zmiennych i ustawienie ich wartości na pusty ciąg znaków
 $first_name = $first_name_err = "";
 $last_name = $last_name_err = "";
 $email = $email_err = "";
 $password = $password_err = "";
 
-// Sprawdzenie czy dane zostały ustawione i przypisanie ich do zmiennych
 if (isset($viewData)) {
     $first_name = $viewData['first_name'];
     $first_name_err = $viewData['first_name_err'];
@@ -26,10 +23,70 @@ if (isset($viewData)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rejestracja</title>
     <link rel="stylesheet" href="../../public/css/register_login.css">
     <link rel="stylesheet" href="../../public/css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Rejestracja</title>
+    <style>
+        /* Стили для формы регистрации, соответствующие дизайну главной страницы */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f3f4;
+        }
+
+        .container {
+            margin-top: 60px;
+        }
+
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 2rem;
+            color: #1d3557;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            color: #1d3557;
+        }
+
+        .form-control {
+            border-color: #457b9d;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: #ff6f61;
+            border-color: #ff6f61;
+            padding: 12px 20px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #e63946;
+            border-color: #e63946;
+        }
+
+        .invalid-feedback {
+            color: #dc3545;
+        }
+
+        .login-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #333;
+        }
+    </style>
 </head>
 
 <body class="bg-light">
@@ -38,11 +95,9 @@ if (isset($viewData)) {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-
-                <!-- Formularz rejestracji pacjenta -->
                 <div class="card my-5">
+                    <h2 class="card-title text-center mb-4">Formularz rejestracji</h2>
                     <div class="card-body">
-                        <h2 class="card-title text-center mb-4">Formularz rejestracji</h2>
                         <form action="../controllers/patient_add_controller.php" method="post">
                             <div class="form-group mb-3">
                                 <label class="form-label">Imię</label>

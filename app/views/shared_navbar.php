@@ -1,29 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav class="navbar navbar-expand-lg custom-navbar fixed-top">
     <div class="container-fluid">
-        <a class="btn btn-light btn-lg" href="index.php">Dental Clinic</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand custom-brand" href="index.php">Cenrum okulistyczne</a>
+        <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] == false) : ?>
                     <li class="nav-item dropdown">
-                        <a class="btn btn-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Log in
+                        <a class="nav-link custom-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Załoguj się
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="patient_login.php">Patient</a>
-                            <a class="dropdown-item" href="dentist_login.php">Staff</a>
+                            <a class="dropdown-item" href="patient_login.php">Pacjent</a>
+                            <a class="dropdown-item" href="okulist_login.php">Pracownik</a>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-light" href="patient_register.php">Sign up</a>
+                        <a class="nav-link custom-link" href="patient_register.php">Zarajestruj się</a>
                     </li>
-                    
                 <?php else : ?>
                     <li class="nav-item dropdown">
-                        <a class="btn btn-light dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Your account
+                        <a class="nav-link custom-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Twoje konto
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <?php
@@ -35,32 +34,32 @@
                                     case 'patient':
                                         echo '<a class="dropdown-item" href="patient_panel.php">Panel pacjenta</a>';
                                         break;
-                                    case 'dentist':
-                                        echo '<a class="dropdown-item" href="dentist_panel.php">Panel dentysty</a>';
+                                    case 'okulist':
+                                        echo '<a class="dropdown-item" href="okulist_panel.php">Panel okulisty</a>';
                                         break;
                                 }
                             }
                             ?>
-                        </div> 
+                        </div>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="chat.php">Chat</a>
+                    <li class="nav-item">
+                        <a class="nav-link custom-link" href="chat.php">Chat</a>
                     </li>
                 <?php endif; ?>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="index.php#our-doctors">Our Doctors</a>
+                <li class="nav-item">
+                    <a class="nav-link custom-link" href="index.php#our-doctors">Nasze lekarze</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="index.php#news">News</a>
+                <li class="nav-item">
+                    <a class="nav-link custom-link" href="index.php#news">Nowości</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="pricelist.php">Price list</a>
+                <li class="nav-item">
+                    <a class="nav-link custom-link" href="pricelist.php">Ceny</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="contact.php">Contact</a>
+                <li class="nav-item">
+                    <a class="nav-link custom-link" href="contact.php">Kontact</a>
                 </li>
             </ul>
-            <span class="nav-item">
+            <span class="navbar-text me-3">
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
                     $firstName = $_SESSION['first_name'] ?? 'Gość';
@@ -72,8 +71,8 @@
                         case 'patient':
                             $translatedRole = 'patient';
                             break;
-                        case 'dentist':
-                            $translatedRole = 'dentist';
+                        case 'okulist':
+                            $translatedRole = 'okulist';
                             break;
                         default:
                             $translatedRole = 'unnamed role';
@@ -85,7 +84,7 @@
             <span class="nav-item">
                 <?php
                 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
-                    echo '<a class="btn btn-light" href="../controllers/logout_controller.php">Wyloguj się</a>';
+                    echo '<a class="btn custom-btn" href="../controllers/logout_controller.php">Wyloguj się</a>';
                 }
                 ?>
             </span>

@@ -1,22 +1,22 @@
-<!-- Lista lekarzy dentystów, która jest plikiem udostępnianym 'shared' -->
+
 
 <?php
 
-// Załadowanie pliku konfiguracyjnego bazy danych i klas modelu
-require_once '../../config/database.php';
-require_once '../models/dentist.php';
 
-// Inicjalizacja obiektu bazy danych i konfiguracja połączenia
+require_once '../../config/database.php';
+require_once '../models/okulist.php';
+
+
 $database = new Database();
 $db = $database->getConnection();
 
-// Inicjalizacja obiektu dentysty
-$dentist = new Dentist($db);
 
-// Pobranie listy dentystów
-$stmt = $dentist->readAll();
+$okulist = new Okulist($db);
 
-// Rozpoczęcie kontenera responsywnego
+
+$stmt = $okulist->readAll();
+
+
 echo "<div class='table-responsive'>";
 echo "<table class='table table-striped'>";
 echo "<thead class='thead-dark'>";
@@ -24,18 +24,18 @@ echo "<tr><th>ID</th><th>Imię</th><th>Nazwisko</th><th>Email</th><th>Specjaliza
 echo "</thead>";
 echo "<tbody>";
 
-// Iterowanie przez wyniki i wyświetlanie każdego dentysty
+
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     extract($row);
     echo "<tr>";
-    echo "<td>{$dentist_id}</td>";
+    echo "<td>{$okulist_id}</td>";
     echo "<td>{$first_name}</td>";
     echo "<td>{$last_name}</td>";
     echo "<td>{$email}</td>";
     echo "<td>{$specialization}</td>";
     echo "<td>";
-    echo "<a href='dentist_edit.php?dentist_id={$dentist_id}' class='btn btn-primary'>Edytuj</a>";
-    echo " <a href='#' data-id='{$dentist_id}' class='btn btn-danger delete-btn'>Usuń</a>";
+    echo "<a href='okulist_edit.php?okulist_id={$okulist_id}' class='btn btn-primary'>Edytuj</a>";
+    echo " <a href='#' data-id='{$okulist_id}' class='btn btn-danger delete-btn'>Usuń</a>";
     echo "</td>";
     echo "</tr>";
 }
@@ -48,13 +48,13 @@ echo "</div>";
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.all.min.js" integrity="sha256-IW9RTty6djbi3+dyypxajC14pE6ZrP53DLfY9w40Xn4=" crossorigin="anonymous"></script>
 
 <script>
-    // Zapytanie potwierdzające usunięcie dentysty
+
     document.querySelectorAll('.delete-btn').forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
-            const dentistId = this.getAttribute('data-id');
+            const okulistId = this.getAttribute('data-id');
 
-            // Wyświetlenie okna dialogowego pytającego o potwierdzenie usunięcia
+           
             Swal.fire({
                 title: "Jesteś pewien?",
                 text: "Tej operacji nie można cofnąć.",
@@ -66,7 +66,7 @@ echo "</div>";
                 cancelButtonText: "Anuluj"
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = '../controllers/delete_dentist_controller.php?dentist_id=' + dentistId;
+                    window.location.href = '../controllers/delete_okulist_controller.php?okulist_id=' + okulistId;
                 }
             });
         });
